@@ -72,13 +72,13 @@ builder.Services.AddCors(options =>
     #if DEBUG
         origings = new[] {
             "https://bioruta.azurewebsites.net",
-            "http://localhost:30635"
+            "http://localhost:44434"
         };
-    #else
+#else
         origings = new[] {
             "https://bioruta.azurewebsites.net",
         };
-    #endif
+#endif
     options.AddPolicy("CorsPolicy",
         builder => builder.WithOrigins(origings)
         .AllowAnyMethod()
