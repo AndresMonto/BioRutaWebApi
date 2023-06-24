@@ -3,6 +3,7 @@ using BusinessLogic.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProyectoReciclaje.Models;
+using System.Resources;
 using System.Security.Claims;
 
 namespace ProyectoReciclaje.Controllers
@@ -23,19 +24,6 @@ namespace ProyectoReciclaje.Controllers
             this._DbContext = DbContext;
         }
 
-        [HttpGet]
-        [Route("[action]")]
-        public IEnumerable<WeatherForecast> Get()
-        {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-            })
-            .ToArray();
-        }
-
-
         [Authorize]
         [HttpPost]
         [Route("[action]")]
@@ -50,9 +38,7 @@ namespace ProyectoReciclaje.Controllers
         {
             try
             {
-                var test = this._DbContext.User.Add(User);
-                this._DbContext.SaveChanges();
-                return test.Entity;
+                return this._DbContext.CreateClient(User).Entity;
             }
             catch (Exception e)
             {
