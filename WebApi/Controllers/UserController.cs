@@ -27,6 +27,22 @@ namespace ProyectoReciclaje.Controllers
         [Authorize]
         [HttpPost]
         [Route("[action]")]
+        public List<User> GetUsers([FromBody] string Search)
+        {
+            return this._DbContext.GetUsers(Search);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("[action]")]
+        public User GetUserById([FromBody] int Id)
+        {
+            return this._DbContext.GetUserById(Id);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("[action]")]
         public string GetUserInfo()
         {
             return HttpContext.User.Claims.Where(c => c.Type == ClaimTypes.UserData)?.FirstOrDefault()?.Value ?? "";
@@ -38,7 +54,7 @@ namespace ProyectoReciclaje.Controllers
         {
             try
             {
-                return this._DbContext.CreateClient(User).Entity;
+                return this._DbContext.CreateUser(User, false);
             }
             catch (Exception e)
             {
@@ -47,7 +63,23 @@ namespace ProyectoReciclaje.Controllers
                 _logger.LogError("Login: " + e.Message, e);
                 return User;
             }
-            
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        public User CreateClient([FromBody] User User)
+        {
+            try
+            {
+                return this._DbContext.CreateUser(User, true);
+            }
+            catch (Exception e)
+            {
+                User.Error = true;
+                User.Message = e.Message;
+                _logger.LogError("Login: " + e.Message, e);
+                return User;
+            }
         }
 
         [HttpPost]
@@ -65,6 +97,43 @@ namespace ProyectoReciclaje.Controllers
                 _logger.LogError("Login: " + e.Message, e);
                 return login;
             }
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        public User DeleteUser([FromBody] User User)
+        {
+            try
+            {
+                return this._DbContext.DeleteUser(User);
+            }
+            catch (Exception e)
+            {
+                User.Error = true;
+                User.Message = e.Message;
+                _logger.LogError("Login: " + e.Message, e);
+                return User;
+            }
+
+        }
+
+
+        [HttpPost]
+        [Route("[action]")]
+        public User UpdateUser([FromBody] User User)
+        {
+            try
+            {
+                return this._DbContext.UpdateUser(User);
+            }
+            catch (Exception e)
+            {
+                User.Error = true;
+                User.Message = e.Message;
+                _logger.LogError("Login: " + e.Message, e);
+                return User;
+            }
+
         }
 
     }

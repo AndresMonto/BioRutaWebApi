@@ -13,5 +13,7 @@ namespace ProyectoReciclaje.Models
         public int RoleId { get; set; }
         [ForeignKey("RoleId")]
         public Role Role { get; set; }
+
+        public bool State { get; set; }
     }
 }

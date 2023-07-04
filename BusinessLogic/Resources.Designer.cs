@@ -77,5 +77,14 @@ namespace BusinessLogic {
                 return ResourceManager.GetString("UsuarioNoEncontrado", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El correo ya se encuentra registrado.
+        /// </summary>
+        internal static string UsuarioRepetido {
+            get {
+                return ResourceManager.GetString("UsuarioRepetido", resourceCulture);
+            }
+        }
     }
 }

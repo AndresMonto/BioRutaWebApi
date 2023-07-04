@@ -8,7 +8,7 @@ namespace BusinessLogic.Models
         [Key]
         public int Id { get; set; }
         [NotMapped]
-        public string Message { get; set; }
+        public string? Message { get; set; }
         [NotMapped]
         public bool Error { get; set; }
     }

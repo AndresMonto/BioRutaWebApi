@@ -123,4 +123,7 @@
   <data name="UsuarioNoEncontrado" xml:space="preserve">
     <value>No fue posible encontrar el Usuario</value>
   </data>
+  <data name="UsuarioRepetido" xml:space="preserve">
+    <value>El correo ya se encuentra registrado</value>
+  </data>
 </root>
