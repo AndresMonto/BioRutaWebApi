@@ -16,11 +16,18 @@ namespace BusinessLogic.Context
         public DbSet<User> User { get; set; }
         public DbSet<Role> Role { get; set; }
         public DbSet<Product> Product { get; set; }
+        public DbSet<Collect> Collect { get; set; }
+        public DbSet<Collect_State> Collects_States { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
                 .HasOne(b => b.Role);
+
+            modelBuilder.Entity<Collect>()
+                .HasOne(b => b.Client);
+            modelBuilder.Entity<Collect>()
+                .HasOne(b => b.State);
         }
     }
 }
