@@ -14,8 +14,7 @@ namespace BusinessLogic.Utilities
             login.Message = "";
             login.Error = false;
 
-            User user = DbContext.User.Include(x => x.Role).Where(x => x.Email == login.Email && x.Password == login.Password).FirstOrDefault();
-            DbContext.Database.CloseConnection();
+            User user = DbContext.User.Include(x => x.Role).Where(x => x.Email == login.Email && x.Password == SecurityManager.Encrypt(login.Password)).FirstOrDefault();
 
             if (user != null)
             {
@@ -56,6 +55,8 @@ namespace BusinessLogic.Utilities
                     User.RoleId = User.Role.Id;
                     User.Role = DbContext.Role.FirstOrDefault(x => x.Id == User.RoleId);
                 }
+
+                User.Password = SecurityManager.Encrypt(User.Password);
 
                 EntityEntry<User> value = DbContext.User.Add(User);
                 DbContext.SaveChanges();
