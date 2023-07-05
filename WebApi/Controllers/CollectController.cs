@@ -43,18 +43,12 @@ namespace ProyectoReciclaje.Controllers
         [Authorize]
         [HttpPost]
         [Route("[action]")]
-        public User GetUserById([FromBody] int Id)
+        public Collect GetCollectById([FromBody] int Id)
         {
-            return this._DbContext.GetUserById(Id);
+            return this._DbContext.GetCollectById(Id);
         }
 
-        [Authorize]
-        [HttpPost]
-        [Route("[action]")]
-        public string GetUserInfo()
-        {
-            return HttpContext.User.Claims.Where(c => c.Type == ClaimTypes.UserData)?.FirstOrDefault()?.Value ?? "";
-        }
+        
 
         [HttpPost]
         [Route("[action]")]
@@ -71,58 +65,6 @@ namespace ProyectoReciclaje.Controllers
                 _logger.LogError("Login: " + e.Message, e);
                 return User;
             }
-        }
-
-        [HttpPost]
-        [Route("[action]")]
-        public User CreateClient([FromBody] User User)
-        {
-            try
-            {
-                return this._DbContext.CreateUser(User, true);
-            }
-            catch (Exception e)
-            {
-                User.Error = true;
-                User.Message = e.Message;
-                _logger.LogError("Login: " + e.Message, e);
-                return User;
-            }
-        }
-
-        [HttpPost]
-        [Route("[action]")]
-        public Login SignIn([FromBody] Login login)
-        {
-            try
-            {
-                return login.ValidUserSignIn(this._DbContext, this._configuration);
-            }
-            catch (Exception e)
-            {
-                login.Error = true;
-                login.Message = e.Message;
-                _logger.LogError("Login: " + e.Message, e);
-                return login;
-            }
-        }
-
-        [HttpPost]
-        [Route("[action]")]
-        public User DeleteUser([FromBody] User User)
-        {
-            try
-            {
-                return this._DbContext.DeleteUser(User);
-            }
-            catch (Exception e)
-            {
-                User.Error = true;
-                User.Message = e.Message;
-                _logger.LogError("Login: " + e.Message, e);
-                return User;
-            }
-
         }
 
 

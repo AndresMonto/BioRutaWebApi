@@ -9,6 +9,10 @@ namespace ProyectoReciclaje.Models
         public DateTime RegistrationDate { get; set; }
 
 
+        public int CollecterId { get; set; }
+        [ForeignKey("CollecterId")]
+        public User Collecter { get; set; }
+
         public int ClientId { get; set; }
         [ForeignKey("ClientId")]
         public User Client { get; set; }
@@ -20,6 +24,11 @@ namespace ProyectoReciclaje.Models
 
         public string? ObservationCli { get; set; }
         public string? ObservationRec { get; set; }
+
+        public string Addres { get; set; }
+
+        [NotMapped]
+        public List<ProductCollect>? Products { get; set; }
     }
 
     public class CollectSearch {
