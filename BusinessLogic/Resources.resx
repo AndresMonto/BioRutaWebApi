@@ -120,6 +120,9 @@
   <data name="ClientId" xml:space="preserve">
     <value>14</value>
   </data>
+  <data name="ProductoRepetido" xml:space="preserve">
+    <value>El nombre del Producto ya se encuentra registrado</value>
+  </data>
   <data name="UsuarioNoEncontrado" xml:space="preserve">
     <value>No fue posible encontrar el Usuario</value>
   </data>

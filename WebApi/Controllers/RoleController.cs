@@ -27,7 +27,7 @@ namespace ProyectoReciclaje.Controllers
         [Authorize]
         [HttpPost]
         [Route("[action]")]
-        public List<Role> GetRoles()
+        public List<Role> GetProducts()
         {
             return this._DbContext.GetRoles();
         }

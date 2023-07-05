@@ -70,6 +70,15 @@ namespace BusinessLogic {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to El nombre del Producto ya se encuentra registrado.
+        /// </summary>
+        internal static string ProductoRepetido {
+            get {
+                return ResourceManager.GetString("ProductoRepetido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No fue posible encontrar el Usuario.
         /// </summary>
         internal static string UsuarioNoEncontrado {
