@@ -19,7 +19,7 @@ namespace BusinessLogic.Utilities
             //Agregamos los claim nuestros
             var claims = new[]
             {
-                new Claim(ClaimTypes.UserData, JsonConvert.SerializeObject(new {user.Name, user.Email, Role = new { user.Role.Name } }))
+                new Claim(ClaimTypes.UserData, JsonConvert.SerializeObject(new {user.Name, user.Email, Role = new { user.Role.Name }, user.Id }))
             };
 
             return new JwtSecurityToken
